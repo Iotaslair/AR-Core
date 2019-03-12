@@ -1,0 +1,26 @@
+First thing that you're going to want to do is clone the git repo to your computer with the command git clone https://github.com/google-ar/sceneform-android-sdk.git
+I like to do this by opening the command prompt, navigating with the cd command then running the command
+Once that is complete open up Android Studio and open up the project at the directory sceneform-android-sdk\samples\hellosceneform. It should have a green icon if android studio if you're at the right directory.
+Give Android Studio some time to load then we can test out the app
+
+By now the app should be ready to go. However it might occur that you don't have a SDK (Software Development Kit) so when you click the run button (little green arrow near top middle area) and choose the phone to run the app on a little window might pop up saying that you need to install a SDK for the app to build with. I suggest whatever SDK your phone is running but if you're using an emulator go with the latest (Android 9 Pie)
+
+	Installing the plugin to load in new assets
+
+Go to File (top right corner) > Settings > Plugins > Browse Repositories (bottom middle)
+Then search for Google Sceneform Tools (Beta) and install the plugin.
+Once the installation is complete you should be asked to reboot android studio. Reboot Android Studio
+
+	Adding new assets
+
+Now you need to find a .fbx file to import into the project.
+Once you have a .fbx file you need to copy all the files and it's dependencies to the sampledata/models folder. An example of a dependency is an image that the model uses for coloring the various parts of the model. If you're unsure about what should be copied over just bring over everything. The 3D modeling world isn't the most standardized for how to organize projects
+Now that your files are in the sampledata folder go into Android Studio, open up sampledata/models and right click your .fbx file and choose "Import Sceneform Asset"
+If you don't see the sampledata folder then you happen to be in the wrong way to view files. In the file directory you should see a little dropdown menu that likely says Project. Select Android from the dropdown menu and complete the steps above
+While Gradle is loading open up the java folder then open up com.google.ar.sceneform.samples.hellosceneform then open up HelloSceneformActivity (it should have a little blue icon next to it)
+You're looking for the line that says .setSource(this, R.raw.andy)
+Change it to say .setSource(this, Uri.parse("NameOfYourFileHere.sfb")) obviously changing the name of the file to the file you imported.
+
+Playing the game
+
+Once that's done you should be able to run the app, go to a flat plane and you should see some white dots on the floor, click on the screen roughly where the dots are and the object you imported should appear. 
