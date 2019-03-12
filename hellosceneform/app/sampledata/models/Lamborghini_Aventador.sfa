@@ -1,0 +1,156 @@
+{
+  animations: [
+    {
+      clips: [
+        {
+          name: 'Take 001',
+          runtime_name: 'Lamborghini_Aventador',
+        },
+      ],
+      path: 'sampledata/models/Lamborghini_Aventador.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'Lamborginhi_base_phong',
+      parameters: [
+        {
+          baseColor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColorMap: 'Lamborginhi Aventador_diffuse',
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Lamborginhi_glass_phong',
+      parameters: [
+        {
+          baseColor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+    {
+      name: 'Lamborginhi_collider_lambert',
+      parameters: [
+        {
+          baseColor: [
+            0.5,
+            0.5,
+            0.5,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/models/Lamborghini_Aventador.fbx',
+    name: 'Lamborghini_Aventador',
+    recenter: 'root',
+    scale: 0.84967000000000004,
+  },
+  samplers: [
+    {
+      file: 'sampledata/models\\Lamborginhi Aventador_diffuse.jpeg',
+      name: 'Lamborginhi Aventador_diffuse',
+      pipeline_name: 'Lamborginhi Aventador_diffuse.jpeg',
+    },
+    {
+      file: 'sampledata/models\\Lamborginhi Aventador_spec.jpeg',
+      name: 'Lamborginhi Aventador_spec',
+      pipeline_name: 'Lamborginhi Aventador_spec.jpeg',
+    },
+  ],
+  version: '0.54:2',
+}
