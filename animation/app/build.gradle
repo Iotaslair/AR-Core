@@ -43,3 +43,9 @@ sceneform.asset('sampledata/models/baseball-cap.gltf',
         'default',
         'sampledata/models/baseball-cap.sfa',
         'src/main/res/raw/baseball_cap')
+
+
+sceneform.asset('sampledata/models/air_drone_blend.fbx',
+        'default',
+        'sampledata/models/air_drone_blend.sfa',
+        'src/main/res/raw/air_drone_blend')

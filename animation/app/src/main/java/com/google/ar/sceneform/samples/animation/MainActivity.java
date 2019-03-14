@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     modelLoader = new ModelLoader(this);
 
-    modelLoader.loadModel(ANDY_RENDERABLE, R.raw.andy_dance);
+    modelLoader.loadModel(ANDY_RENDERABLE, R.raw.air_drone_blend);
     modelLoader.loadModel(HAT_RENDERABLE, R.raw.baseball_cap);
 
     // When a plane is tapped, the model is placed on an Anchor node anchored to the plane.
