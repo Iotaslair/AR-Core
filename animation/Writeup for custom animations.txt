@@ -1,0 +1,9 @@
+Open up the animation folder from last time and find a .fbx file with animations.
+Once that's done you can copy over the .fbx to the sampledata/models folder in the same way we did last time
+
+You're likely going to need to rename the .fbx file here to only lowercase, numbers and underscores. For me the file is named air_drone_blend.fbx
+Once that is done you're going to right click on the .fbx file similar to last time and choose Import Sceneform Asset.
+However we're going to change one quick thing, for the output folder titled ".sfb Output Path" change it to src\main\res\raw. You can do so by clicking the 3 dot menu on the right and navigating to that directory.
+Once that's done click Finish and let Gradle do it's thing.
+Once Gradle is done loading you're going to open up the MainActivity file in the java class and change the line "modelLoader.loadModel(ANDY_RENDERABLE, R.raw.andy_dance);" to "modelLoader.loadModel(ANDY_RENDERABLE, R.raw.air_drone_blend);" 
+Once that's done you can run the app and it should work
