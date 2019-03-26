@@ -59,3 +59,8 @@ sceneform.asset('sampledata/models/andy.obj',
         'default',
         'sampledata/models/andy.sfa',
         'src/main/res/raw/andy')
+
+sceneform.asset('sampledata/models/LampPost.obj',
+        'default',
+        'sampledata/models/LampPost.sfa',
+        'src/main/assets/LampPost')
