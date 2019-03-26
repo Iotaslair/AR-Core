@@ -64,3 +64,8 @@ sceneform.asset('sampledata/models/model.obj',
         'default',
         'sampledata/models/model.sfa',
         'src/main/res/raw/model')
+
+sceneform.asset('sampledata/models/LampPost.obj',
+        'default',
+        'sampledata/models/LampPost.sfa',
+        'src/main/assets/LampPost')
