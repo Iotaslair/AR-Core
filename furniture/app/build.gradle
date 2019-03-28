@@ -64,3 +64,8 @@ sceneform.asset('sampledata/models/lamppost.obj',
         'default',
         'sampledata/models/lamppost.sfa',
         'src/main/res/raw/lamppost')
+
+sceneform.asset('sampledata/models/couch.obj',
+        'default',
+        'sampledata/models/couch.sfa',
+        'src/main/res/raw/couch')
