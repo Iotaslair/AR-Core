@@ -62,7 +62,7 @@ public class Furniture extends AppCompatActivity {
     // When you build a Renderable, Sceneform loads its resources in the background while returning
     // a CompletableFuture. Call thenAccept(), handle(), or check isDone() before calling get().
     ModelRenderable.builder()
-        .setSource(this, R.raw.lamppost)
+        .setSource(this, R.raw.chair)
         .build()
         .thenAccept(renderable -> andyRenderable = renderable)
         .exceptionally(
