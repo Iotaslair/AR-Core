@@ -34,14 +34,14 @@
       'Orientation',
     ],
     collision: {},
-    file: 'sampledata/models/LampPost.obj',
-    name: 'LampPost',
+    file: 'sampledata/models/lamppost.obj',
+    name: 'lamppost',
     recenter: 'root',
     scale: 0.060885000000000002,
   },
   samplers: [
     {
-      file: 'sampledata/models/LampPost_Main.png',
+      file: 'sampledata/models\\LampPost_Main.png',
       name: 'LampPost_Main',
       pipeline_name: 'LampPost_Main.png',
     },
