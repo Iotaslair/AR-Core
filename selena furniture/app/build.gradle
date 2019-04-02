@@ -63,11 +63,6 @@ sceneform.asset('sampledata/models/andy.obj',
 
 
 
-sceneform.asset('sampledata/models/lamp/LampPost.obj',
-        'default',
-        'sampledata/models/lamp/LampPost.sfa',
-        'src/main/assets/LampPost')
-
 sceneform.asset('sampledata/models/couch/couch.obj',
         'default',
         'sampledata/models/couch/couch.sfa',
@@ -77,3 +72,15 @@ sceneform.asset('sampledata/models/chair/chair.obj',
         'default',
         'sampledata/models/chair/chair.sfa',
         'src/main/assets/chair')
+
+
+sceneform.asset('sampledata/models/obj-1/obj/table ERNEST 160_200 & chair SYLWEK 1.obj',
+        'default',
+        'sampledata/models/obj-1/obj/table ERNEST 160_200 & chair SYLWEK 1.sfa',
+        'src/main/assets/tablechairs')
+
+
+sceneform.asset('sampledata/models/boxwood_plant_obj/boxwood_plant.obj',
+        'default',
+        'sampledata/models/boxwood_plant_obj/boxwood_plant.sfa',
+        'src/main/assets/boxwood_plant')

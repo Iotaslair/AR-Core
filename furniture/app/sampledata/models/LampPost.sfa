@@ -41,7 +41,7 @@
   },
   samplers: [
     {
-      file: 'sampledata/models\\LampPost_Main.png',
+      file: 'sampledata/models//LampPost_Main.png',
       name: 'LampPost_Main',
       pipeline_name: 'LampPost_Main.png',
     },

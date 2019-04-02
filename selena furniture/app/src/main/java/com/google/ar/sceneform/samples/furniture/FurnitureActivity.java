@@ -142,11 +142,13 @@ public class FurnitureActivity extends AppCompatActivity {
     private void initializeGallery() {
         LinearLayout gallery = findViewById(R.id.gallery_layout);
 
+        /*
         ImageView lamp = new ImageView(this);
         lamp.setImageResource(R.drawable.lamp);
         lamp.setContentDescription("lamp");
-        lamp.setOnClickListener(view ->{buildObject("LampPost.sfb");});
+        lamp.setOnClickListener(view ->{buildObject("lamppost.sfb");});
         gallery.addView(lamp);
+        */
 
         ImageView couch = new ImageView(this);
         couch.setImageResource(R.drawable.sofa);
@@ -159,5 +161,17 @@ public class FurnitureActivity extends AppCompatActivity {
         chair.setContentDescription("chair");
         chair.setOnClickListener(view ->{buildObject("chair.sfb");});
         gallery.addView(chair);
+
+        ImageView item1 = new ImageView(this);
+        item1.setImageResource(R.drawable.tablechairs);
+        item1.setContentDescription("table and chair");
+        item1.setOnClickListener(view ->{buildObject("tablechairs.sfb");});
+        gallery.addView(item1);
+
+        ImageView plant = new ImageView(this);
+        plant.setImageResource(R.drawable.plant);
+        plant.setContentDescription("potted plant");
+        plant.setOnClickListener(view ->{buildObject("boxwood_plant.sfb");});
+        gallery.addView(plant);
     }
 }
