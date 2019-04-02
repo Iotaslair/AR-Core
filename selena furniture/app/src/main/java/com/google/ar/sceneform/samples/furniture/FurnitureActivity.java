@@ -143,19 +143,19 @@ public class FurnitureActivity extends AppCompatActivity {
         LinearLayout gallery = findViewById(R.id.gallery_layout);
 
         ImageView lamp = new ImageView(this);
-        lamp.setImageResource(R.drawable.lamp_thumb);
+        lamp.setImageResource(R.drawable.lamp);
         lamp.setContentDescription("lamp");
         lamp.setOnClickListener(view ->{buildObject("LampPost.sfb");});
         gallery.addView(lamp);
 
         ImageView couch = new ImageView(this);
-        couch.setImageResource(R.drawable.couch_thumb);
+        couch.setImageResource(R.drawable.sofa);
         couch.setContentDescription("couch");
         couch.setOnClickListener(view ->{buildObject("couch.sfb");});
         gallery.addView(couch);
 
         ImageView chair = new ImageView(this);
-        chair.setImageResource(R.drawable.chair_thumb);
+        chair.setImageResource(R.drawable.chair);
         chair.setContentDescription("chair");
         chair.setOnClickListener(view ->{buildObject("chair.sfb");});
         gallery.addView(chair);
