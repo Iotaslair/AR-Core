@@ -154,10 +154,18 @@ public class FurnitureActivity extends AppCompatActivity {
         couch.setOnClickListener(view ->{buildObject("couch.sfb");});
         gallery.addView(couch);
 
+        ImageView bookshelf = new ImageView(this);
+        bookshelf.setImageResource(R.drawable.sofa);
+        bookshelf.setContentDescription("bookshelf");
+        bookshelf.setOnClickListener(view ->{buildObject("Corona Bookcase Set.sfb");});
+        gallery.addView(bookshelf);
+
         ImageView chair = new ImageView(this);
         chair.setImageResource(R.drawable.chair);
         chair.setContentDescription("chair");
         chair.setOnClickListener(view ->{buildObject("chair.sfb");});
         gallery.addView(chair);
+
+
     }
 }

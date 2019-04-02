@@ -77,3 +77,8 @@ sceneform.asset('sampledata/models/chair/chair.obj',
         'default',
         'sampledata/models/chair/chair.sfa',
         'src/main/assets/chair')
+
+sceneform.asset('sampledata/models/bookshelf/Corona Bookcase Set.fbx',
+        'default',
+        'sampledata/models/bookshelf/Corona Bookcase Set.sfa',
+        'src/main/assets/Corona Bookcase Set')
