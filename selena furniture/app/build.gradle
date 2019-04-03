@@ -82,3 +82,8 @@ sceneform.asset('sampledata/models/bookshelf/Corona Bookcase Set.fbx',
         'default',
         'sampledata/models/bookshelf/Corona Bookcase Set.sfa',
         'src/main/assets/Corona Bookcase Set')
+
+sceneform.asset('sampledata/models/night_stand/Collier Webb Console.FBX',
+        'default',
+        'sampledata/models/night_stand/Collier Webb Console.sfa',
+        'src/main/assets/Collier Webb Console')

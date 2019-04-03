@@ -142,6 +142,12 @@ public class FurnitureActivity extends AppCompatActivity {
     private void initializeGallery() {
         LinearLayout gallery = findViewById(R.id.gallery_layout);
 
+        ImageView chair = new ImageView(this);
+        chair.setImageResource(R.drawable.chair);
+        chair.setContentDescription("chair");
+        chair.setOnClickListener(view ->{buildObject("chair.sfb");});
+        gallery.addView(chair);
+
         ImageView lamp = new ImageView(this);
         lamp.setImageResource(R.drawable.lamp);
         lamp.setContentDescription("lamp");
@@ -160,10 +166,10 @@ public class FurnitureActivity extends AppCompatActivity {
         bookshelf.setOnClickListener(view ->{buildObject("Corona Bookcase Set.sfb");});
         gallery.addView(bookshelf);
 
-        ImageView chair = new ImageView(this);
-        chair.setImageResource(R.drawable.chair);
-        chair.setContentDescription("chair");
-        chair.setOnClickListener(view ->{buildObject("chair.sfb");});
-        gallery.addView(chair);
+        ImageView stand = new ImageView(this);
+        stand.setImageResource(R.drawable.table);
+        stand.setContentDescription("stand");
+        stand.setOnClickListener(view ->{buildObject("Collier Webb Console.sfb");});
+        gallery.addView(stand);
     }
 }
