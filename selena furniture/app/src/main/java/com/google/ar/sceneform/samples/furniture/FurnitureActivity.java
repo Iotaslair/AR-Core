@@ -26,6 +26,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -173,5 +174,8 @@ public class FurnitureActivity extends AppCompatActivity {
         plant.setContentDescription("potted plant");
         plant.setOnClickListener(view ->{buildObject("boxwood_plant.sfb");});
         gallery.addView(plant);
+
+        //HorizontalScrollView menuView = new HorizontalScrollView(this);
+        //menuView.addView(gallery);
     }
 }
