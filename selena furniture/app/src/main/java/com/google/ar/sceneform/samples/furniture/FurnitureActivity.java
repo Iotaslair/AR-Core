@@ -155,7 +155,7 @@ public class FurnitureActivity extends AppCompatActivity {
         gallery.addView(couch);
 
         ImageView bookshelf = new ImageView(this);
-        bookshelf.setImageResource(R.drawable.sofa);
+        bookshelf.setImageResource(R.drawable.coronabookshelf01);
         bookshelf.setContentDescription("bookshelf");
         bookshelf.setOnClickListener(view ->{buildObject("Corona Bookcase Set.sfb");});
         gallery.addView(bookshelf);
@@ -165,7 +165,5 @@ public class FurnitureActivity extends AppCompatActivity {
         chair.setContentDescription("chair");
         chair.setOnClickListener(view ->{buildObject("chair.sfb");});
         gallery.addView(chair);
-
-
     }
 }
