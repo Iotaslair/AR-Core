@@ -84,3 +84,8 @@ sceneform.asset('sampledata/models/boxwood_plant_obj/boxwood_plant.obj',
         'default',
         'sampledata/models/boxwood_plant_obj/boxwood_plant.sfa',
         'src/main/assets/boxwood_plant')
+
+sceneform.asset('sampledata/models/Obj-2/Bed 08.obj',
+        'default',
+        'sampledata/models/Obj-2/Bed 08.sfa',
+        'src/main/assets/bed')

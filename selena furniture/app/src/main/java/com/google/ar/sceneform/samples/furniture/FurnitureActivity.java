@@ -175,6 +175,12 @@ public class FurnitureActivity extends AppCompatActivity {
         plant.setOnClickListener(view ->{buildObject("boxwood_plant.sfb");});
         gallery.addView(plant);
 
+        ImageView bed = new ImageView(this);
+        bed.setImageResource(R.drawable.bed);
+        bed.setContentDescription("bed");
+        bed.setOnClickListener(view ->{buildObject("bed.sfb");});
+        gallery.addView(bed);
+
         //HorizontalScrollView menuView = new HorizontalScrollView(this);
         //menuView.addView(gallery);
     }
