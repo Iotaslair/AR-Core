@@ -75,3 +75,9 @@ sceneform.asset('sampledata/models/frame_upper_right.obj',
         'default',
         'sampledata/models/frame_upper_right.sfa',
         'src/main/assets/models/frame_upper_right')
+
+
+sceneform.asset('sampledata/models/Astronaut/Astronaut.obj',
+        'default',
+        'sampledata/models/Astronaut/Astronaut.sfa',
+        'src/main/assets/Astronaut')
