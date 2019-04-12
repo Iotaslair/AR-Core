@@ -28,11 +28,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.google.ar.core.AugmentedImageDatabase;
 import com.google.ar.core.Config;
 import com.google.ar.core.Session;
 import com.google.ar.sceneform.samples.common.helpers.SnackbarHelper;
 import com.google.ar.sceneform.ux.ArFragment;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -40,123 +42,129 @@ import java.io.InputStream;
  * Extend the ArFragment to customize the ARCore session configuration to include Augmented Images.
  */
 public class AugmentedImageFragment extends ArFragment {
-  private static final String TAG = "AugmentedImageFragment";
+    private static final String TAG = "AugmentedImageFragment";
 
-  // This is the name of the image in the sample database.  A copy of the image is in the assets
-  // directory.  Opening this image on your computer is a good quick way to test the augmented image
-  // matching.
-  private static final String DEFAULT_IMAGE_NAME = "default.jpg";
-  private static final String ASTRONAUT_IMAGE_NAME = "Astronaut-EVA.jpg";
+    // This is the name of the image in the sample database.  A copy of the image is in the assets
+    // directory.  Opening this image on your computer is a good quick way to test the augmented image
+    // matching.
+    private static final String DEFAULT_IMAGE_NAME = "default.jpg";
+    private static final String ASTRONAUT_IMAGE_NAME = "Astronaut-EVA.jpg";
+    private static final String DRONE_IMAGE_NAME = "desert.jpg";
 
-  // This is a pre-created database containing the sample image.
-  private static final String SAMPLE_IMAGE_DATABASE = "sample_database.imgdb";
+    // This is a pre-created database containing the sample image.
+    private static final String SAMPLE_IMAGE_DATABASE = "sample_database.imgdb";
 
-  // Augmented image configuration and rendering.
-  // Load a single image (true) or a pre-generated image database (false).
-  private static final boolean USE_SINGLE_IMAGE = true;
+    // Augmented image configuration and rendering.
+    // Load a single image (true) or a pre-generated image database (false).
+    private static final boolean USE_SINGLE_IMAGE = true;
 
-  // Do a runtime check for the OpenGL level available at runtime to avoid Sceneform crashing the
-  // application.
-  private static final double MIN_OPENGL_VERSION = 3.0;
+    // Do a runtime check for the OpenGL level available at runtime to avoid Sceneform crashing the
+    // application.
+    private static final double MIN_OPENGL_VERSION = 3.0;
 
-  @Override
-  public void onAttach(Context context) {
-    super.onAttach(context);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
-    // Check for Sceneform being supported on this device.  This check will be integrated into
-    // Sceneform eventually.
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-      Log.e(TAG, "Sceneform requires Android N or later");
-      SnackbarHelper.getInstance()
-          .showError(getActivity(), "Sceneform requires Android N or later");
+        // Check for Sceneform being supported on this device.  This check will be integrated into
+        // Sceneform eventually.
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            Log.e(TAG, "Sceneform requires Android N or later");
+            SnackbarHelper.getInstance()
+                    .showError(getActivity(), "Sceneform requires Android N or later");
+        }
+
+        String openGlVersionString =
+                ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE))
+                        .getDeviceConfigurationInfo()
+                        .getGlEsVersion();
+        if (Double.parseDouble(openGlVersionString) < MIN_OPENGL_VERSION) {
+            Log.e(TAG, "Sceneform requires OpenGL ES 3.0 or later");
+            SnackbarHelper.getInstance()
+                    .showError(getActivity(), "Sceneform requires OpenGL ES 3.0 or later");
+        }
     }
 
-    String openGlVersionString =
-        ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE))
-            .getDeviceConfigurationInfo()
-            .getGlEsVersion();
-    if (Double.parseDouble(openGlVersionString) < MIN_OPENGL_VERSION) {
-      Log.e(TAG, "Sceneform requires OpenGL ES 3.0 or later");
-      SnackbarHelper.getInstance()
-          .showError(getActivity(), "Sceneform requires OpenGL ES 3.0 or later");
-    }
-  }
+    @Override
+    public View onCreateView(
+            LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
 
-  @Override
-  public View onCreateView(
-      LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View view = super.onCreateView(inflater, container, savedInstanceState);
-
-    // Turn off the plane discovery since we're only looking for images
-    getPlaneDiscoveryController().hide();
-    getPlaneDiscoveryController().setInstructionView(null);
-    getArSceneView().getPlaneRenderer().setEnabled(false);
-    return view;
-  }
-
-  @Override
-  protected Config getSessionConfiguration(Session session) {
-    Config config = super.getSessionConfiguration(session);
-    if (!setupAugmentedImageDatabase(config, session)) {
-      SnackbarHelper.getInstance()
-          .showError(getActivity(), "Could not setup augmented image database");
-    }
-    return config;
-  }
-
-  private boolean setupAugmentedImageDatabase(Config config, Session session) {
-    AugmentedImageDatabase augmentedImageDatabase;
-
-    AssetManager assetManager = getContext() != null ? getContext().getAssets() : null;
-    if (assetManager == null) {
-      Log.e(TAG, "Context is null, cannot initialize image database.");
-      return false;
+        // Turn off the plane discovery since we're only looking for images
+        getPlaneDiscoveryController().hide();
+        getPlaneDiscoveryController().setInstructionView(null);
+        getArSceneView().getPlaneRenderer().setEnabled(false);
+        return view;
     }
 
-    // There are two ways to configure an AugmentedImageDatabase:
-    // 1. Add Bitmap to DB directly
-    // 2. Load a pre-built AugmentedImageDatabase
-    // Option 2) has
-    // * shorter setup time
-    // * doesn't require images to be packaged in apk.
-    if (USE_SINGLE_IMAGE) {
-      Bitmap defaultBitmap = loadAugmentedImageBitmap(assetManager,DEFAULT_IMAGE_NAME);
-      if (defaultBitmap == null) {
-        return false;
-      }
-      Bitmap astronautBitmap = loadAugmentedImageBitmap(assetManager,ASTRONAUT_IMAGE_NAME);
-      if (astronautBitmap == null) {
-          return false;
-      }
-
-      augmentedImageDatabase = new AugmentedImageDatabase(session);
-      augmentedImageDatabase.addImage(DEFAULT_IMAGE_NAME, defaultBitmap);
-      augmentedImageDatabase.addImage(ASTRONAUT_IMAGE_NAME,astronautBitmap);
-      // If the physical size of the image is known, you can instead use:
-      //     augmentedImageDatabase.addImage("image_name", augmentedImageBitmap, widthInMeters);
-      // This will improve the initial detection speed. ARCore will still actively estimate the
-      // physical size of the image as it is viewed from multiple viewpoints.
-    } else {
-      // This is an alternative way to initialize an AugmentedImageDatabase instance,
-      // load a pre-existing augmented image database.
-      try (InputStream is = getContext().getAssets().open(SAMPLE_IMAGE_DATABASE)) {
-        augmentedImageDatabase = AugmentedImageDatabase.deserialize(session, is);
-      } catch (IOException e) {
-        Log.e(TAG, "IO exception loading augmented image database.", e);
-        return false;
-      }
+    @Override
+    protected Config getSessionConfiguration(Session session) {
+        Config config = super.getSessionConfiguration(session);
+        if (!setupAugmentedImageDatabase(config, session)) {
+            SnackbarHelper.getInstance()
+                    .showError(getActivity(), "Could not setup augmented image database");
+        }
+        return config;
     }
 
-    config.setAugmentedImageDatabase(augmentedImageDatabase);
-    return true;
-  }
+    private boolean setupAugmentedImageDatabase(Config config, Session session) {
+        AugmentedImageDatabase augmentedImageDatabase;
 
-  private Bitmap loadAugmentedImageBitmap(AssetManager assetManager, String IMAGE_NAME) {
-    try (InputStream is = assetManager.open(IMAGE_NAME)) {
-      return BitmapFactory.decodeStream(is);
-    } catch (IOException e) {
-      Log.e(TAG, "IO exception loading augmented image bitmap.", e);
+        AssetManager assetManager = getContext() != null ? getContext().getAssets() : null;
+        if (assetManager == null) {
+            Log.e(TAG, "Context is null, cannot initialize image database.");
+            return false;
+        }
+
+        // There are two ways to configure an AugmentedImageDatabase:
+        // 1. Add Bitmap to DB directly
+        // 2. Load a pre-built AugmentedImageDatabase
+        // Option 2) has
+        // * shorter setup time
+        // * doesn't require images to be packaged in apk.
+        if (USE_SINGLE_IMAGE) {
+            Bitmap defaultBitmap = loadAugmentedImageBitmap(assetManager, DEFAULT_IMAGE_NAME);
+            if (defaultBitmap == null) {
+                return false;
+            }
+            Bitmap astronautBitmap = loadAugmentedImageBitmap(assetManager, ASTRONAUT_IMAGE_NAME);
+            if (astronautBitmap == null) {
+                return false;
+            }
+            Bitmap droneBitmap = loadAugmentedImageBitmap(assetManager, DRONE_IMAGE_NAME);
+            if (droneBitmap == null) {
+                return false;
+            }
+
+            augmentedImageDatabase = new AugmentedImageDatabase(session);
+            augmentedImageDatabase.addImage(DEFAULT_IMAGE_NAME, defaultBitmap);
+            augmentedImageDatabase.addImage(ASTRONAUT_IMAGE_NAME, astronautBitmap);
+            augmentedImageDatabase.addImage(DRONE_IMAGE_NAME, droneBitmap);
+            // If the physical size of the image is known, you can instead use:
+            //     augmentedImageDatabase.addImage("image_name", augmentedImageBitmap, widthInMeters);
+            // This will improve the initial detection speed. ARCore will still actively estimate the
+            // physical size of the image as it is viewed from multiple viewpoints.
+        } else {
+            // This is an alternative way to initialize an AugmentedImageDatabase instance,
+            // load a pre-existing augmented image database.
+            try (InputStream is = getContext().getAssets().open(SAMPLE_IMAGE_DATABASE)) {
+                augmentedImageDatabase = AugmentedImageDatabase.deserialize(session, is);
+            } catch (IOException e) {
+                Log.e(TAG, "IO exception loading augmented image database.", e);
+                return false;
+            }
+        }
+
+        config.setAugmentedImageDatabase(augmentedImageDatabase);
+        return true;
     }
-    return null;
-  }
+
+    private Bitmap loadAugmentedImageBitmap(AssetManager assetManager, String IMAGE_NAME) {
+        try (InputStream is = assetManager.open(IMAGE_NAME)) {
+            return BitmapFactory.decodeStream(is);
+        } catch (IOException e) {
+            Log.e(TAG, "IO exception loading augmented image bitmap.", e);
+        }
+        return null;
+    }
 }

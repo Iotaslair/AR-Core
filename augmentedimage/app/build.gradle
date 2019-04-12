@@ -81,3 +81,8 @@ sceneform.asset('sampledata/models/Astronaut/Astronaut.obj',
         'default',
         'sampledata/models/Astronaut/Astronaut.sfa',
         'src/main/assets/Astronaut')
+
+sceneform.asset('sampledata/models/Drone/drone.obj',
+        'default',
+        'sampledata/models/Drone/drone.sfa',
+        'src/main/assets/drone')

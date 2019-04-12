@@ -100,6 +100,11 @@ public class AugmentedImageActivity extends AppCompatActivity {
                             node.setImage(augmentedImage);
                             augmentedImageMap.put(augmentedImage, node);
                             arFragment.getArSceneView().getScene().addChild(node);
+                        } else if (augmentedImage.getName().equals("desert.jpg")) {
+                            AugmentedImageDrone node = new AugmentedImageDrone(this);
+                            node.setImage(augmentedImage);
+                            augmentedImageMap.put(augmentedImage, node);
+                            arFragment.getArSceneView().getScene().addChild(node);
                         } else {
                             AugmentedImageNode node = new AugmentedImageNode(this);
                             node.setImage(augmentedImage);
