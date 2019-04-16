@@ -1,0 +1,34 @@
+Starting from the Augmented Image starting app one can load in a new model as shown previously, change a setSource line in AugmentedImageNode's constructor to contain the directory of your model. For me it was ".setSource(context, Uri.parse("model_name.sfb"))".
+
+Once you know that your model works you can started on making a new class. Call the class something like AugmentedImage(NameOfModelHere). Copy the code from AugmentedImageNode into it and change the constructor's name to the name of your class.
+
+Once that's done we need to start clearing out code that's unnecessary because AugmentedImageNode was made to work with 4 models and we need 1 model to work. 
+In the constructor get rid of the instantion for urCorner through lrCorner and while you're at it get rid of the variables urCorner through lrCorner. 
+Change the model in setSource to your model
+Within setImage there a CompleteableFuture.allOf call, now that you only have 1 model you can get rid of the other models and add your model in (this is if you changed  the name of your model otherwise just pass ulCorner).
+Go down to the bottom where it says localPosition.set you can change the parameters to 0 * whatever was there before. This makes it so that when the model is placed it's placed in the center of the image.
+
+If you find that your model isn't oriented correctly I recommend either going into Blender (rotate it, reexport it, import it back into Android Studio and then test if its oriented correctly) or you can try rotate it within Android Studio (Create another Vector3, set it's parameters and calling setLocalRotation(Quaternion.eulerAngles(yourVector3Here)) on the model. If you go the Android Studio route just mess around with the parameters until you have it oriented how you want).
+
+
+Now in the AugmentedImageFragment class you have to add your image to the database. The way that I found is to change the variable USE_SIMPLE_IMAGE to true, and add all images at runtime. 
+You can do this by creating another Bitmap for each image like this
+Bitmap astronautBitmap = loadAugmentedImageBitmap(assetManager, ASTRONAUT_IMAGE_NAME);
+            if (astronautBitmap == null) {
+                return false;
+            }
+Once that's done just add it to the database like this
+augmentedImageDatabase.addImage(ASTRONAUT_IMAGE_NAME, astronautBitmap);
+You also need to change the function loadAugmentedImageBitmap to take a String as a parameter so that it doesn't open up default.jpg everytime.
+
+
+Once that's done you need to add the logic that adds the right model when the app detects a image it recognizes. 
+You need to change augmentedImageMap to have it's value be a AnchorNode (This is the class that AugmentedImageNode and the classes we created inherit from).
+Once that's done you need to find out the name of the image it detected and find out which image it so you can load the right model. 
+if (augmentedImage.getName().equals("Astronaut-EVA.jpg")) {
+	AugmentedImageAstronaut node = new AugmentedImageAstronaut(this);
+	node.setImage(augmentedImage);
+	augmentedImageMap.put(augmentedImage, node);
+	arFragment.getArSceneView().getScene().addChild(node);
+}
+I then have else ifs for every other image I have which basically does the same thing for every image in the database.
